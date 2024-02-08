@@ -8,16 +8,16 @@ export const Mainmenu = () => {
             <MenuTrigger />
             <section className="container">
                 <nav>
-                    <Link href="#" title="homepage">
+                    <Link href="/" title="homepage">
                         Home
                     </Link>
-                    <Link href="#" title="portfolio">
+                    <Link href="/cases" title="portfolio">
                         Portfolio
                     </Link>
-                    <Link href="#" title="about me">
+                    <Link href="/about-me" title="about me">
                         About me
                     </Link>
-                    <Link href="#" title="contact">
+                    <Link href="/contact" title="contact">
                         Contact
                     </Link>
                 </nav>
