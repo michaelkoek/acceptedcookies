@@ -1,13 +1,13 @@
 "use client";
 
-import { getPortfolioItems } from "@/server/portfolio/getPortfolioItem";
-import Image from "next/image";
 import { useEffect } from "react";
+import Image from "next/image";
+import { getPortfolios } from "@/server/portfolio/getPortfolios";
 
 export default function Home() {
     useEffect(() => {
         const test = async () => {
-            const product = await getPortfolioItems("my-test");
+            const product = await getPortfolios();
             console.log({ product });
         };
         test();
