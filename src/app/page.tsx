@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
 import { getPortfolios } from "@/server/portfolio/getPortfolios";
+import { BaseContainer } from "@/components/base-container";
 
 export default function Home() {
     useEffect(() => {
@@ -15,14 +15,23 @@ export default function Home() {
 
     return (
         <>
-            <article className="">
-                <h1 className="">Accepted Cookies</h1>
-                <p>Experience delicious bite sized development</p>
-            </article>
+            <header className="min-h-[calc(100vh/3)]">
+                <BaseContainer>
+                    <section className="grid md:grid-cols-[calc((100%/3)*2),1fr]">
+                        <section>
+                            <h1 className="text-5xl md:text-8xl font-bold">
+                                Accepted Cookies
+                            </h1>
+                            <p>Experience delicious bite sized development</p>
+                        </section>
+                        <section>img</section>
+                    </section>
+                </BaseContainer>
+            </header>
 
-            <article>
+            <main>
                 <section></section>
-            </article>
+            </main>
         </>
     );
 }

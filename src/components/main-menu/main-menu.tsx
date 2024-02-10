@@ -2,24 +2,31 @@
 import Link from "next/link";
 import { MenuTrigger } from "./menu-trigger";
 
-export const Mainmenu = () => {
+interface IMainMenu {
+    menuItems: {
+        id: number;
+        label: string;
+        title: string;
+        url: string;
+    }[];
+}
+
+export const Mainmenu = ({ menuItems }: IMainMenu) => {
     return (
         <section>
             <MenuTrigger />
             <section className="container">
                 <nav>
-                    <Link href="/" title="homepage">
-                        Home
-                    </Link>
-                    <Link href="/cases" title="portfolio">
-                        Portfolio
-                    </Link>
-                    <Link href="/about-me" title="about me">
-                        About me
-                    </Link>
-                    <Link href="/contact" title="contact">
-                        Contact
-                    </Link>
+                    {menuItems.map((menuItem) => (
+                        <Link
+                            key={menuItem.id}
+                            href={menuItem.url}
+                            title={menuItem.title}
+                            className="capitalize m-2"
+                        >
+                            {menuItem.label}
+                        </Link>
+                    ))}
                 </nav>
             </section>
         </section>
