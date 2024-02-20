@@ -3,7 +3,7 @@ import { Nunito } from "next/font/google";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import "./globals.css";
+import "../globals.css";
 import { Mainmenu } from "@/components/menu";
 import { Footer } from "@/components/footer";
 
@@ -32,10 +32,23 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <section>{children}</section>
-      </body>
-    </html>
+    <>
+      <section className="sticky top-0 flex flex-row items-center justify-between px-8 py-4">
+        <Link href="/" className="z-20">
+          <Image
+            alt="Accepted Cookies logo"
+            title="Accepted Cookies - front-end development"
+            src="/images/accepted-cookies-logo.png"
+            width={72}
+            height={72}
+          />
+        </Link>
+        <Mainmenu />
+      </section>
+
+      {children}
+
+      {/* <Footer /> */}
+    </>
   );
 }
