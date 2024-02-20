@@ -1,11 +1,7 @@
 import type { ReactNode } from "react";
 import { Nunito } from "next/font/google";
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import "./globals.css";
-import { Mainmenu } from "@/components/menu";
-import { Footer } from "@/components/footer";
 
 const inter = Nunito({ subsets: ["latin"] });
 
@@ -33,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <section>{children}</section>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

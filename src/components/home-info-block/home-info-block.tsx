@@ -26,7 +26,7 @@ export const HomeInfoBlock = ({
     <Link
       href={linkData.href}
       title={linkData.title}
-      className="flex w-full cursor-pointer flex-col justify-between gap-3 rounded-xl bg-slate-200 p-4 transition-transform ease-in-out hover:scale-105"
+      className="flex w-full cursor-pointer flex-col justify-between gap-3 rounded-xl bg-slate-200 p-4 transition-transform ease-in-out hover:scale-105 hover:shadow-md"
     >
       <h3 className="flex gap-2 font-bold">
         {title} {icon && icon()}
