@@ -1,1 +1,1 @@
-export { Mainmenu } from "./main-menu";
+export { MainMenu } from "./main-menu";

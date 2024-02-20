@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { getPortfolios } from "@/server/portfolio/getPortfolios";
-import { BaseContainer } from "@/components/base-container";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -11,8 +10,9 @@ import {
   FingerPrintIcon,
   DocumentCheckIcon,
   PresentationChartBarIcon,
-} from "@heroicons/react/24/solid";
+} from "@heroicons/react/24/outline";
 import { HomeInfoBlock } from "@/components/home-info-block";
+import { MainMenu } from "@/components/menu";
 
 export default function Home() {
   useEffect(() => {
@@ -26,31 +26,12 @@ export default function Home() {
   return (
     <main className="h-lvh">
       <div className="absolute left-[50%] top-6 translate-x-[-50%]">
-        <nav className="flex items-center rounded-full border bg-slate-300/70 p-1 backdrop-blur-xl">
-          <div className="rounded-full bg-white p-3">
-            <Bars3Icon className="h-6 w-6" />
-          </div>
-          <Link href="/about" title="about me" className="px-4">
-            About
-          </Link>
-          <Link href="/cases" title="cases" className="px-4">
-            Cases
-          </Link>
-          <Link href="/blog" title="blog" className="px-4">
-            Readables
-          </Link>
-          <Link href="/stickers" title="stickers" className="px-4">
-            Stickables
-          </Link>
-          <Link href="/contact" title="contact" className="px-4">
-            Contactables
-          </Link>
-        </nav>
+        <MainMenu isOpen />
       </div>
       <section className="grid h-full grid-cols-3">
         <article className="col-span-2 flex flex-col justify-between ">
           <header className="p-4">
-            <Link href="/">
+            <Link href="/" className="group">
               <Image
                 alt="Accepted Cookies logo"
                 title="Accepted Cookies - front-end development"
@@ -58,6 +39,9 @@ export default function Home() {
                 width={72}
                 height={72}
               />
+              <span className="block transform text-sm opacity-0 transition-[transform,opacity] group-hover:translate-y-2 group-hover:opacity-100">
+                Accepted <strong>Cookies</strong>
+              </span>
             </Link>
           </header>
 
@@ -80,6 +64,7 @@ export default function Home() {
                     width={100}
                     height={100}
                   />
+
                   <nav className="flex flex-row gap-4">
                     <Link
                       href="https://www.linkedin.com/in/michael-koek/"
@@ -156,7 +141,7 @@ export default function Home() {
                 title: "Let's get in touch",
               }}
             >
-              Hey, let's connect and collaborate
+              Hey, let's connect and collaborate. See my availability
             </HomeInfoBlock>
           </section>
         </article>
