@@ -1,5 +1,5 @@
 "use client";
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { MenuTrigger } from "./menu-trigger";
 import { menuItems } from "./menu-items";
@@ -14,35 +14,57 @@ interface IMainMenu {
 
 export const MainMenu = ({ isOpen }: IMainMenu) => {
   const [mainMenu, setMainMenu] = useState<IMenuItems[]>();
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const currentPath = usePathname();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMainMenu(
       menuItems.flatMap((menuItem) =>
         currentPath === "/" && menuItem.url === "/" ? [] : menuItem,
       ),
     );
-    setMenuIsOpen(!!isOpen);
-  }, [currentPath]);
-
-  const toggleMenuState = () => {
-    if (isOpen) return;
-    setMenuIsOpen((prevState) => !prevState);
-  };
+    setIsExpanded(!!isOpen);
+  }, []);
 
   const MenuTriggerIcon = useMemo(() => {
     if (isOpen) return Bars3Icon;
-    return menuIsOpen ? XMarkIcon : Bars3Icon;
-  }, [menuIsOpen]);
+    return isExpanded ? XMarkIcon : Bars3Icon;
+  }, [isExpanded, isOpen]);
 
-  console.log({ isOpen });
+  const toggleMenuState = () => {
+    if (isOpen) return;
+    setIsExpanded((prevState) => !prevState);
+  };
 
   return (
-    <section className="flex items-center overflow-hidden rounded-full border bg-slate-300/70 p-1 backdrop-blur-xl">
+    <motion.section
+      className={`
+      flex 
+      items-center 
+      overflow-hidden 
+      rounded-full 
+      border 
+      bg-slate-300/70 
+      p-1 
+      backdrop-blur-xl  
+    `}
+      animate={{
+        width: isExpanded ? "100%" : "58px",
+      }}
+      transition={{
+        type: "tween",
+        ease: "easeOut",
+      }}
+      initial={false}
+    >
       <motion.button
-        className="rounded-full bg-white p-3"
+        className="rounded-full bg-white p-3 hover:animate-pulse"
         onClick={() => toggleMenuState()}
+        animate={{
+          rotate: isExpanded ? 360 : 0,
+        }}
+        transition={{ delay: 0.2 }}
+        initial={false}
       >
         <MenuTriggerIcon className="h-6 w-6" />
       </motion.button>
@@ -59,23 +81,6 @@ export const MainMenu = ({ isOpen }: IMainMenu) => {
           </Link>
         ))}
       </motion.nav>
-
-      {/* <motion.div
-        className="circle-button"
-        whileHover={{ scale: 1.1 }}
-        onClick={() => setMenuIsOpen((prevState) => !prevState)}
-      >
-        <motion.div
-          className={`menu ${menuIsOpen ? "expanded" : ""}`}
-          initial={{ scale: 0 }}
-          animate={{ scale: menuIsOpen ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <a href="/link1">Link 1</a>
-          <a href="/link2">Link 2</a>
-          <a href="/link3">Link 3</a>
-        </motion.div>
-      </motion.div> */}
-    </section>
+    </motion.section>
   );
 };
