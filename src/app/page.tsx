@@ -131,7 +131,7 @@ export default function Home() {
                   title: "Let's get in touch",
                 }}
               >
-                Hey, let's connect and collaborate. See my availability
+                Hey, lets connect and collaborate. See my availability
               </HomeInfoBlock>
             </section>
           </article>

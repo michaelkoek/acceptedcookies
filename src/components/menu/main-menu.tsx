@@ -1,12 +1,11 @@
 "use client";
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { MenuTrigger } from "./menu-trigger";
-import { menuItems } from "./menu-items";
-import type { IMenuItems } from "./menu-items";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { menuItems } from "./menu-items";
+import type { IMenuItems } from "./menu-items";
 
 interface IMainMenu {
   isOpen?: boolean;
@@ -43,13 +42,12 @@ export const MainMenu = ({ isOpen }: IMainMenu) => {
       items-center 
       overflow-hidden 
       rounded-full 
-      border 
       bg-slate-300/70 
       p-1 
       backdrop-blur-xl  
     `}
       animate={{
-        width: isExpanded ? "100%" : "58px",
+        width: isExpanded ? "100%" : "56px",
       }}
       transition={{
         type: "tween",

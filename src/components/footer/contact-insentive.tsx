@@ -6,7 +6,7 @@ export const ContactInsentive = () => {
   return (
     <BaseContainer>
       <section className="mb-8 flex flex-row items-center justify-center gap-4">
-        <span>Let's link and have a coffee ☕️</span>
+        <span>Lets link and have a coffee ☕️</span>
         <Link
           href="/contact"
           title="get in touch"
