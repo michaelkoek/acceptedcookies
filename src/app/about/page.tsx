@@ -26,7 +26,7 @@ export default function Home() {
           <MainMenu />
         </div>
       </header>
-      <main>
+      <main className="bg-gray-100">
         <section className="relative h-screen">
           <section className="relative z-10 h-full">
             <BaseContainer className="flex h-full flex-col justify-center gap-5">
@@ -53,7 +53,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
+        <section className="">
           <BaseContainer>
             <ExperienceCard
               jobTitle="Sr. Front-end developer"
