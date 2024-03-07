@@ -39,6 +39,7 @@ export const StackItem = () => {
         alt="test"
         title="test"
         variants={imageMotion}
+        loading="lazy"
         // className="aspect-[1] object-contain mix-blend-color-burn"
       />
       <motion.span variants={textMotion}>ReactJS</motion.span>

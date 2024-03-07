@@ -11,6 +11,7 @@ import { MainMenu } from "@/components/menu";
 import { ExperienceCard } from "@/components/experience-card";
 import { btnStyle } from "@/components/button";
 import { StackItem } from "@/components/stack-item";
+import { TeachChart } from "@/components/teach-chart";
 
 export default function Home() {
   useEffect(() => {
@@ -31,17 +32,16 @@ export default function Home() {
       </header>
       <main className="bg-gray-100">
         <section className="relative h-screen">
-          <section className="relative z-10 h-full">
-            <BaseContainer className="flex h-full flex-col justify-center gap-5">
-              <h1 className="text-6xl text-gray-200 drop-shadow-sm lg:text-8xl xl:text-9xl">
-                Curious to learn more?
-              </h1>
-              <p>Read about my journey, what I stand for, how I work</p>
-              <Link href="#about-section" className={btnStyle}>
-                Read more
-              </Link>
-            </BaseContainer>
-          </section>
+          <BaseContainer className="relative z-10 flex h-full flex-col justify-center gap-5">
+            <h1 className="text-6xl text-gray-200 drop-shadow-sm lg:text-8xl xl:text-9xl">
+              Curious to learn more?
+            </h1>
+            <p>Read about my journey, what I stand for, how I work</p>
+            <Link href="#about-section" className={btnStyle}>
+              Read more
+            </Link>
+          </BaseContainer>
+
           <div className="absolute left-0 top-0 w-full bg-slate-500">
             <section className="sticky top-0 h-screen">
               <div className="mix"></div>
@@ -57,8 +57,11 @@ export default function Home() {
             </section>
           </div>
         </section>
-        <BaseContainer>
-          <section className="grid gap-6 py-6 md:grid-cols-3">
+        <BaseContainer className="py-6">
+          <h2 className="mb-4 px-8 text-4xl font-bold text-gray-800 drop-shadow-sm">
+            Experience
+          </h2>
+          <section className="grid gap-6 md:grid-cols-3">
             <section className="col-span-2 flex flex-col gap-4">
               <ExperienceCard
                 jobTitle="Sr. Front-end developer"
@@ -118,8 +121,8 @@ export default function Home() {
             </section>
           </section>
         </BaseContainer>
-        <section id="about-section" className="py-6 ">
-          <BaseContainer>
+        <section id="about-section">
+          <BaseContainer className="py-6">
             What I do and stand for I consider myself not as a framework
             developer but as a Javascript developer. A framework is a tool to
             make building application easier. I tend to focus on writing read
@@ -136,11 +139,11 @@ export default function Home() {
             </ul>
           </BaseContainer>
         </section>
-        <section className="bg-white py-40">
-          <BaseContainer>
+        <section className="bg-white">
+          <BaseContainer className="py-40">
             <div className=" grid grid-cols-3 items-center gap-4">
               <div>
-                <h2 className="text-4xl font-bold text-gray-800 drop-shadow-sm ">
+                <h2 className="mb-4 text-4xl font-bold text-gray-800 drop-shadow-sm">
                   My stack
                 </h2>
                 <p>
@@ -164,12 +167,19 @@ export default function Home() {
             </div>
           </BaseContainer>
         </section>
-        <section className="bg-gray-900 py-6">
+        <section className=" py-6">
           <BaseContainer>Brands worked with</BaseContainer>
         </section>
-        <section className="py-6">
-          <BaseContainer>Teacher</BaseContainer>
+        <section className="bg-gray-900">
+          <BaseContainer className="flex h-screen flex-col justify-around py-6">
+            <h2 className="mb-4 text-4xl font-bold text-gray-200 drop-shadow-sm">
+              Teaching
+            </h2>
+            <TeachChart />
+          </BaseContainer>
         </section>
+
+        <BaseContainer className="py-6">completed courses</BaseContainer>
       </main>
     </>
   );
