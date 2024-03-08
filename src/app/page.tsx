@@ -32,19 +32,19 @@ export default function Home() {
       <div className="absolute left-[50%] top-6 translate-x-[-50%]">
         <MainMenu isOpen />
       </div>
-      <main className="h-lvh">
-        <section className="grid h-full grid-cols-3">
-          <article className="col-span-2 flex flex-col justify-between ">
+      <main className="mt-[145px] h-lvh md:mt-auto">
+        <section className="grid h-full md:grid-cols-3">
+          <article className="col-span-1 flex flex-col justify-between md:col-span-2 ">
             <section className="flex h-full items-center">
               <section className="px-4 md:px-12">
-                <section className="flex flex-col gap-4">
+                <section className="flex flex-col items-center justify-evenly gap-4 md:items-start">
                   <h1 className="text-3xl md:text-[calc(16px+16*(100vw-568px)/200)] md:leading-none">
                     Hi, my name is <span>Michael</span>
                   </h1>
                   <p className="md:text-[calc(8px+8*(100vw-568px)/200)]">
                     I am a Front-end developer
                   </p>
-                  <section className="flex items-center gap-5">
+                  <section className="flex flex-col items-center gap-5 md:flex-row">
                     <Image
                       loading="lazy"
                       src="http://placehold.it/100x100"
@@ -97,7 +97,7 @@ export default function Home() {
               </section>
             </section>
 
-            <section className="flex gap-5 p-4 md:p-12">
+            <section className="flex flex-col gap-5 p-4 md:flex-row md:p-12">
               <HomeInfoBlock
                 title="Get in touch"
                 btnLabel="Contact me"
@@ -136,7 +136,9 @@ export default function Home() {
             </section>
           </article>
 
-          <article className=" bg-stone-900">sdfds</article>
+          <article className="invisible w-full bg-stone-900 md:visible">
+            sdfds
+          </article>
         </section>
       </main>
     </>
