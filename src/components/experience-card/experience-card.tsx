@@ -1,6 +1,8 @@
+"use client";
+
+import { useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import type { ReactNode } from "react";
 
 interface IExperienceCard {
   jobTitle: string;
@@ -11,8 +13,8 @@ interface IExperienceCard {
     url?: string;
   };
   children?: ReactNode;
-  tasks: string[];
-  tools: string[];
+  tasks: string;
+  tools: string;
 }
 
 export const ExperienceCard = ({
@@ -23,6 +25,8 @@ export const ExperienceCard = ({
   tasks,
   tools,
 }: IExperienceCard) => {
+  const [expanded, setExpanded] = useState(false);
+
   const getExpierenceTime = (startDate: string, endDate: string) => {
     const startDateConv = new Date(startDate);
     const endDateConv = new Date(endDate);
@@ -54,6 +58,10 @@ export const ExperienceCard = ({
     return `${startEndDateConverter()} · ${calcTimeDifference()}`;
   };
 
+  const toggleExpand = () => {
+    setExpanded((prevState) => !prevState);
+  };
+
   return (
     <motion.article
       className="flex flex-col gap-4 rounded-md p-8 md:flex-row"
@@ -74,6 +82,7 @@ export const ExperienceCard = ({
           width={56}
           height={56}
           className="min-w-14 rounded-md"
+          loading="lazy"
         />
       </section>
 
@@ -84,21 +93,30 @@ export const ExperienceCard = ({
           {getExpierenceTime(dateRange[0], dateRange[1])}
         </span>
         {children && <p className="mb-2">{children}</p>}
-        {tasks.length > 0 && (
-          <ul className="list-disc">
-            {tasks.map((task) => (
-              <li key={task}>{task}</li>
-            ))}
-          </ul>
-        )}
+        <section>
+          {tasks && (
+            <>
+              <ul className="list-disc">
+                {tasks.split("-").map(
+                  (task, index) =>
+                    task && (
+                      <li
+                        key={task}
+                        className={`${!expanded && index >= 4 ? "hidden" : ""}`}
+                      >
+                        {task}
+                      </li>
+                    ),
+                )}
+              </ul>
+              <button onClick={toggleExpand}>Show more</button>
+            </>
+          )}
+        </section>
         {tools.length > 0 && (
           <section>
             <strong>Tools used:</strong>
-            <ul className="flex flex-row gap-1">
-              {tools.map((tool) => (
-                <li key={tool}>{tool}</li>
-              ))}
-            </ul>
+            <p className="text-sm text-gray-400">{tools}</p>
           </section>
         )}
       </section>

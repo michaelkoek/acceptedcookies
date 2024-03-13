@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { getPortfolios } from "@/server/portfolio/getPortfolios";
+import type { IPortfolioItem } from "@/server/portfolio/getPortfolios";
 import { BaseContainer } from "@/components/base-container";
 import { LogoDisplayHeader } from "@/components/logo-display";
 import { MainMenu } from "@/components/menu";
@@ -13,14 +14,18 @@ import { btnStyle } from "@/components/button";
 import { StackItem } from "@/components/stack-item";
 import { TeachChart } from "@/components/teach-chart";
 
-export default function Home() {
+export default function About() {
+  const [experienceItems, setExperienceItems] = useState<IPortfolioItem[]>([]);
+
   useEffect(() => {
     const test = async () => {
       const product = await getPortfolios();
-      console.log({ product });
+      setExperienceItems(product.portfolios);
     };
     test();
   }, []);
+
+  console.log({ experienceItems });
 
   return (
     <>
@@ -63,7 +68,23 @@ export default function Home() {
           </h2>
           <section className="grid gap-6 md:grid-cols-3">
             <section className="col-span-2 flex flex-col gap-4">
-              <ExperienceCard
+              {experienceItems.map((expItem) => (
+                <ExperienceCard
+                  key={expItem.id}
+                  jobTitle={expItem.jobPosition}
+                  companyDetails={{
+                    name: expItem.title,
+                    logoUrl: "http://placehold.it/56/56",
+                  }}
+                  dateRange={[expItem.startingDate, expItem.endDate]}
+                  tasks={expItem.taskSummary}
+                  tools={expItem.tools}
+                >
+                  {expItem.description}
+                </ExperienceCard>
+              ))}
+
+              {/* <ExperienceCard
                 jobTitle="Sr. Front-end developer"
                 companyDetails={{
                   name: "DGN Publishers (Zorgkiezer.nl | Energiekiezer.nl)",
@@ -77,7 +98,7 @@ export default function Home() {
                   "Build core functionalities for the e-commerce platform, enabling users to customise the product, filter the products and proceed to the check-out page",
                 ]}
                 tools={["React", "NextJS", "Typescript", "GraphQL"]}
-              />
+              /> */}
             </section>
             <section className="col-span-2 md:col-span-1">
               <motion.article

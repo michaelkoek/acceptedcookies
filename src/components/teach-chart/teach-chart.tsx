@@ -31,7 +31,7 @@ export const TeachChart = () => {
   ]);
 
   const btnClass =
-    "p-8 border-gray-800 border-2 w-full mb-2 text-left transition-color hover:border-gray-200";
+    "p-8 border-gray-800 border-2 w-full mb-2 text-left transition-color active:ring-2 hover:ring-2 text-gray-200";
 
   return (
     <article className="grid grid-cols-2 gap-4 md:gap-8">
@@ -43,7 +43,6 @@ export const TeachChart = () => {
               key={menuItem.label}
               initial={{
                 opacity: 0,
-                translateY: 0,
                 translateX: 10,
               }}
               whileInView={{ opacity: 1, translateX: 0 }}
@@ -55,9 +54,9 @@ export const TeachChart = () => {
                 damping: 30,
               }}
             >
-              <button className={btnClass} title={menuItem.title}>
+              <motion.button className={btnClass} title={menuItem.title}>
                 {menuItem.label}
-              </button>
+              </motion.button>
             </motion.li>
           ))}
         </ul>

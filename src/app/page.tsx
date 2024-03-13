@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPortfolios } from "@/server/portfolio/getPortfolios";
 import Link from "next/link";
 import Image from "next/image";
@@ -35,7 +35,7 @@ export default function Home() {
       <main className="mt-[145px] h-lvh md:mt-auto">
         <section className="grid h-full md:grid-cols-3">
           <article className="col-span-1 flex flex-col justify-between md:col-span-2 ">
-            <section className="flex h-full items-center">
+            <section className="flex h-full items-center justify-evenly">
               <section className="px-4 md:px-12">
                 <section className="flex flex-col items-center justify-evenly gap-4 md:items-start">
                   <h1 className="text-3xl md:text-[calc(16px+16*(100vw-568px)/200)] md:leading-none">
