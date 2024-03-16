@@ -71,7 +71,7 @@ export default function About() {
             What I do and stand for I consider myself not as a framework
             developer but as a Javascript developer. A framework is a tool to
             make building application easier. I tend to focus on writing read
-            <ul>
+            <ul className="list-disc">
               <li>Team player</li>
               <li>Excellent problem solving skills</li>
               <li>Scalable and flexible code while using the best practices</li>
@@ -79,8 +79,6 @@ export default function About() {
                 Attention to HTML semantics for better usability and SEO
                 purposes
               </li>
-
-              <button>Read more in About me</button>
             </ul>
           </BaseContainer>
         </section>

@@ -79,6 +79,8 @@ export const MainMenu = ({ isOpen }: IMainMenu) => {
         ))}
       </motion.nav>
       <motion.button
+        title="toggle menu"
+        aria-label="Menu"
         className="absolute right-0.5 rounded-full bg-white p-3 hover:animate-pulse"
         onClick={() => toggleMenuState()}
         animate={{
