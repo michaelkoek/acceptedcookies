@@ -42,22 +42,23 @@ export default function About() {
               Curious to learn more?
             </h1>
             <p>Read about my journey, what I stand for, how I work</p>
-            <Link href="#about-section" className={btnStyle}>
-              Read more
-            </Link>
+            <div>
+              <Link href="#about-section" className={btnStyle}>
+                Read more
+              </Link>
+            </div>
           </BaseContainer>
 
           <div className="absolute left-0 top-0 w-full bg-slate-500">
             <section className="sticky top-0 h-screen">
-              <div className="mix"></div>
               <Image
-                src="https://picsum.photos/1200/1300"
+                src="https://picsum.photos/seed/picsum/1200/1300"
                 loading="lazy"
                 alt="bg test image"
                 title="bg test image"
                 width={1200}
                 height={600}
-                className="size-full object-cover"
+                className="size-full object-cover opacity-50 blur-sm"
               />
             </section>
           </div>
@@ -153,8 +154,13 @@ export default function About() {
 
                 <div>
                   <label className="flex cursor-pointer items-center gap-2">
-                    <input type="checkbox" value="" className="peer sr-only" />
-                    <div className="peer relative block h-7 w-[3.2rem] rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:shadow-lg after:transition-all after:content-[''] peer-checked:bg-green-700 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-red-900 dark:bg-red-800 dark:peer-focus:ring-blue-800"></div>
+                    <input
+                      type="checkbox"
+                      checked
+                      value=""
+                      className="peer sr-only"
+                    />
+                    <div className="peer relative block h-7 w-[3.2rem] rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:shadow-lg after:transition-all after:content-[''] peer-checked:bg-green-700 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none rtl:peer-checked:after:-translate-x-full dark:border-red-900 dark:bg-red-800 dark:peer-focus:ring-blue-800"></div>
                     <span className="text-sm font-medium text-gray-900 dark:text-gray-300">
                       Available for work?
                     </span>

@@ -126,7 +126,15 @@ export default function Home() {
           </article>
 
           <article className="invisible w-full bg-stone-900 md:visible">
-            sdfds
+            <Image
+              loading="lazy"
+              title="Made with pencil and markers"
+              src="/images/doodle.jpg"
+              width={1000}
+              height={1000}
+              alt="Selfmade doodle"
+              className="h-screen object-cover opacity-40 blur-sm"
+            />
           </article>
         </section>
       </main>
