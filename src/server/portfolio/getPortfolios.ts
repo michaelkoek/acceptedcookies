@@ -10,7 +10,7 @@ export interface IPortfolioItem {
   taskSummary: string;
   tools: string;
   jobPosition: string;
-  companyLogo: {
+  companyLogo?: {
     url: string;
     id: string;
   };
@@ -34,8 +34,8 @@ export const getPortfolios = async () => {
             tools
             jobPosition
             companyLogo {
-              url
               id
+              url
             }
           }
        }`,

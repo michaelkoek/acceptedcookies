@@ -25,6 +25,8 @@ export default function About() {
     fetchExperiences();
   }, []);
 
+  console.log({ experienceItems });
+
   return (
     <>
       <header className="fixed top-0 z-50 flex w-full justify-between p-4">
@@ -95,7 +97,8 @@ export default function About() {
                   jobTitle={expItem.jobPosition}
                   companyDetails={{
                     name: expItem.title,
-                    logoUrl: "http://placehold.it/56/56",
+                    logoUrl:
+                      expItem?.companyLogo?.url ?? "http://placehold.it/56/56",
                   }}
                   dateRange={[expItem.startingDate, expItem.endDate]}
                   tasks={expItem.taskSummary}

@@ -81,7 +81,7 @@ export const ExperienceCard = ({
           src={companyDetails.logoUrl}
           width={56}
           height={56}
-          className="min-w-14 rounded-md"
+          className="min-w-14 rounded-md shadow-lg"
           loading="lazy"
         />
       </section>
