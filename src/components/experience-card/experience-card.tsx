@@ -25,9 +25,9 @@ export const ExperienceCard = ({
   tasks,
   tools,
 }: IExperienceCard) => {
-  const [expanded, setExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const getExpierenceTime = (startDate: string, endDate: string) => {
+  const getExperienceTime = (startDate: string, endDate: string) => {
     const startDateConv = new Date(startDate);
     const endDateConv = new Date(endDate);
 
@@ -59,7 +59,7 @@ export const ExperienceCard = ({
   };
 
   const toggleExpand = () => {
-    setExpanded((prevState) => !prevState);
+    setIsExpanded((prevState) => !prevState);
   };
 
   return (
@@ -90,7 +90,7 @@ export const ExperienceCard = ({
         <h3 className="font-bold">{companyDetails.name}</h3>
         <h4 className="">{jobTitle}</h4>
         <span className="mb-4 text-gray-400">
-          {getExpierenceTime(dateRange[0], dateRange[1])}
+          {getExperienceTime(dateRange[0], dateRange[1])}
         </span>
         {children && <p className="mb-2">{children}</p>}
         <section>
@@ -102,20 +102,26 @@ export const ExperienceCard = ({
                     task && (
                       <li
                         key={task}
-                        className={`${!expanded && index >= 4 ? "hidden" : ""}`}
+                        className={`${!isExpanded && index >= 4 ? "hidden" : ""}`}
                       >
                         {task}
                       </li>
                     ),
                 )}
               </ul>
-              <button onClick={toggleExpand}>Show more</button>
+              <button
+                title={isExpanded ? "Show less" : "Click to see more"}
+                className="rounded-full border px-4 py-2 hover:bg-gray-200"
+                onClick={toggleExpand}
+              >
+                {isExpanded ? "Collapse" : "Show more"}
+              </button>
             </>
           )}
         </section>
         {tools.length > 0 && (
           <section>
-            <strong>Tools used:</strong>
+            <strong>Skills:</strong>
             <p className="text-sm text-gray-400">{tools}</p>
           </section>
         )}

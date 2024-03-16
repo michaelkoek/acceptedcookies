@@ -39,15 +39,17 @@ export const MainMenu = ({ isOpen }: IMainMenu) => {
     <motion.section
       className={`
       flex 
+      h-[53px] 
       items-center 
       overflow-hidden 
       rounded-full 
-      bg-slate-300/70 
-      p-1 
-      backdrop-blur-xl  
+      bg-slate-300/70
+      p-3
+      backdrop-blur-xl
     `}
       animate={{
-        width: isExpanded ? "100%" : "56px",
+        width: isExpanded ? "100%" : "53px",
+        paddingRight: isExpanded ? "53px" : undefined,
       }}
       transition={{
         type: "tween",
@@ -55,30 +57,84 @@ export const MainMenu = ({ isOpen }: IMainMenu) => {
       }}
       initial={false}
     >
-      <motion.button
-        className="rounded-full bg-white p-3 hover:animate-pulse"
-        onClick={() => toggleMenuState()}
+      <motion.nav
+        className="flex w-full"
         animate={{
-          rotate: isExpanded ? 360 : 0,
+          opacity: isExpanded ? 1 : 0,
         }}
-        transition={{ delay: 0.2 }}
-        initial={false}
+        transition={{
+          type: "tween",
+          ease: "easeOut",
+        }}
       >
-        <MenuTriggerIcon className="h-6 w-6" />
-      </motion.button>
-
-      <motion.nav className="flex w-full">
         {mainMenu?.map((menuItem) => (
           <Link
             key={menuItem.id}
             href={menuItem.url}
             title={menuItem.title}
-            className="px-4 capitalize hover:text-gray-600"
+            className="px-2 capitalize hover:text-gray-600"
           >
             {menuItem.label}
           </Link>
         ))}
       </motion.nav>
+      <motion.button
+        className="absolute right-0.5 rounded-full bg-white p-3 hover:animate-pulse"
+        onClick={() => toggleMenuState()}
+        animate={{
+          rotate: isExpanded ? 360 : 0,
+        }}
+        initial={false}
+      >
+        <MenuTriggerIcon className="h-6 w-6" />
+      </motion.button>
     </motion.section>
   );
+
+  // return (
+  //   <motion.section
+  //     className={`
+  //     flex
+  //     items-center
+  //     overflow-hidden
+  //     rounded-full
+  //     bg-slate-300/70
+  //     p-1
+  //     backdrop-blur-xl
+  //   `}
+  //     animate={{
+  //       width: isExpanded ? "100%" : "56px",
+  //     }}
+  //     transition={{
+  //       type: "tween",
+  //       ease: "easeOut",
+  //     }}
+  //     initial={false}
+  //   >
+  //     <motion.button
+  //       className="rounded-full bg-white p-3 hover:animate-pulse"
+  //       onClick={() => toggleMenuState()}
+  //       animate={{
+  //         rotate: isExpanded ? 360 : 0,
+  //       }}
+  //       transition={{ delay: 0.2 }}
+  //       initial={false}
+  //     >
+  //       <MenuTriggerIcon className="h-6 w-6" />
+  //     </motion.button>
+
+  //     <motion.nav className="flex w-full">
+  //       {mainMenu?.map((menuItem) => (
+  //         <Link
+  //           key={menuItem.id}
+  //           href={menuItem.url}
+  //           title={menuItem.title}
+  //           className="px-4 capitalize hover:text-gray-600"
+  //         >
+  //           {menuItem.label}
+  //         </Link>
+  //       ))}
+  //     </motion.nav>
+  //   </motion.section>
+  // );
 };

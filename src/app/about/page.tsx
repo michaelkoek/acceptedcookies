@@ -18,14 +18,12 @@ export default function About() {
   const [experienceItems, setExperienceItems] = useState<IPortfolioItem[]>([]);
 
   useEffect(() => {
-    const test = async () => {
+    const fetchExperiences = async () => {
       const product = await getPortfolios();
       setExperienceItems(product.portfolios);
     };
-    test();
+    fetchExperiences();
   }, []);
-
-  console.log({ experienceItems });
 
   return (
     <>
@@ -62,8 +60,31 @@ export default function About() {
             </section>
           </div>
         </section>
+
+        <section id="about-section">
+          <BaseContainer className="py-6">
+            <h2 className="mb-4 text-4xl font-bold text-gray-800 drop-shadow-sm">
+              About me
+            </h2>
+            What I do and stand for I consider myself not as a framework
+            developer but as a Javascript developer. A framework is a tool to
+            make building application easier. I tend to focus on writing read
+            <ul>
+              <li>Team player</li>
+              <li>Excellent problem solving skills</li>
+              <li>Scalable and flexible code while using the best practices</li>
+              <li>
+                Attention to HTML semantics for better usability and SEO
+                purposes
+              </li>
+
+              <button>Read more in About me</button>
+            </ul>
+          </BaseContainer>
+        </section>
+
         <BaseContainer className="py-6">
-          <h2 className="mb-4 px-8 text-4xl font-bold text-gray-800 drop-shadow-sm">
+          <h2 className="mb-4 text-4xl font-bold text-gray-800 drop-shadow-sm">
             Experience
           </h2>
           <section className="grid gap-6 md:grid-cols-3">
@@ -83,22 +104,6 @@ export default function About() {
                   {expItem.description}
                 </ExperienceCard>
               ))}
-
-              {/* <ExperienceCard
-                jobTitle="Sr. Front-end developer"
-                companyDetails={{
-                  name: "DGN Publishers (Zorgkiezer.nl | Energiekiezer.nl)",
-                  logoUrl: "http://placehold.it/56/56",
-                }}
-                dateRange={["2023-03-01", "2024-01-01"]}
-                tasks={[
-                  "Met a demanding deadline while upholding a commitment to prioritizing quality over quantity.",
-                  "Collaborating within a microservice architecture. It was important to uphold set standards and ensure quality across all projects",
-                  "Provided guidance to junior developers and actively participated in architectural and technical decision-making processes.",
-                  "Build core functionalities for the e-commerce platform, enabling users to customise the product, filter the products and proceed to the check-out page",
-                ]}
-                tools={["React", "NextJS", "Typescript", "GraphQL"]}
-              /> */}
             </section>
             <section className="col-span-2 md:col-span-1">
               <motion.article
@@ -128,47 +133,49 @@ export default function About() {
                     Front-end developer
                   </h4>
                 </div>
-                <Link
-                  href="#"
-                  title="download my CV in pdf"
-                  className={btnStyle}
-                >
-                  Download resume
-                </Link>
-                <Link href="/contact" title="Get in touch" className={btnStyle}>
-                  Contact me
-                </Link>
+                <div className="flex w-full flex-col gap-4">
+                  <Link
+                    href="#"
+                    title="download my CV in pdf"
+                    className={btnStyle}
+                  >
+                    Download resume
+                  </Link>
+                  <Link
+                    href="/contact"
+                    title="Get in touch"
+                    className={btnStyle}
+                  >
+                    Contact me
+                  </Link>
+                </div>
+
+                <div>
+                  <label className="flex cursor-pointer items-center gap-2">
+                    <input type="checkbox" value="" className="peer sr-only" />
+                    <div className="peer relative block h-7 w-[3.2rem] rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:shadow-lg after:transition-all after:content-[''] peer-checked:bg-green-700 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-red-900 dark:bg-red-800 dark:peer-focus:ring-blue-800"></div>
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-300">
+                      Available for work?
+                    </span>
+                  </label>
+                </div>
               </motion.article>
             </section>
           </section>
         </BaseContainer>
-        <section id="about-section">
-          <BaseContainer className="py-6">
-            What I do and stand for I consider myself not as a framework
-            developer but as a Javascript developer. A framework is a tool to
-            make building application easier. I tend to focus on writing read
-            <ul>
-              <li>Team player</li>
-              <li>Excellent problem solving skills</li>
-              <li>Scalable and flexible code while using the best practices</li>
-              <li>
-                Attention to HTML semantics for better usability and SEO
-                purposes
-              </li>
 
-              <button>Read more in About me</button>
-            </ul>
-          </BaseContainer>
-        </section>
         <section className="bg-white">
           <BaseContainer className="py-40">
-            <div className=" grid grid-cols-3 items-center gap-4">
+            <div className="grid-row-3 grid items-center gap-4 md:grid-cols-3">
               <div>
                 <h2 className="mb-4 text-4xl font-bold text-gray-800 drop-shadow-sm">
                   My stack
                 </h2>
                 <p>
-                  I stay up to date with the latest development in the dev
+                  I consider myself not as a framework developer but as a
+                  Javascript developer. A framework is a tool to make building
+                  application easier. I focus more on writing clean and readable
+                  code. I stay up to date with the latest development in the dev
                   world. I like to keep up, investigate and spot with trends.
                   Having experience with all of these tools made me a fast
                   learner and excellent documentation reading skills.
@@ -191,14 +198,14 @@ export default function About() {
         <section className=" py-6">
           <BaseContainer>Brands worked with</BaseContainer>
         </section>
-        <section className="bg-gray-900">
+        {/* <section className="bg-gray-900">
           <BaseContainer className="flex h-screen flex-col justify-around py-6">
             <h2 className="mb-4 text-4xl font-bold text-gray-200 drop-shadow-sm">
               Teaching
             </h2>
             <TeachChart />
           </BaseContainer>
-        </section>
+        </section> */}
 
         <BaseContainer className="py-6">completed courses</BaseContainer>
       </main>

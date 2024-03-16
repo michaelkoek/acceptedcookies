@@ -34,7 +34,7 @@ export const TeachChart = () => {
     "p-8 border-gray-800 border-2 w-full mb-2 text-left transition-color active:ring-2 hover:ring-2 text-gray-200";
 
   return (
-    <article className="grid grid-cols-2 gap-4 md:gap-8">
+    <article className="grid gap-4 md:grid-cols-2 md:gap-8">
       <div className="bg-red-200">sdfdsf</div>
       <div className="">
         <ul>

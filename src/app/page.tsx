@@ -1,10 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getPortfolios } from "@/server/portfolio/getPortfolios";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import {
   CodeBracketSquareIcon,
   FingerPrintIcon,
@@ -16,14 +13,6 @@ import { MainMenu } from "@/components/menu";
 import { LogoDisplayHeader } from "@/components/logo-display";
 
 export default function Home() {
-  useEffect(() => {
-    const test = async () => {
-      const product = await getPortfolios();
-      console.log({ product });
-    };
-    test();
-  }, []);
-
   return (
     <>
       <header className="fixed top-0 p-4">
