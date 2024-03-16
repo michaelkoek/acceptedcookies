@@ -8,7 +8,7 @@ interface IBaseContainer {
 export const BaseContainer = ({ children, className }: IBaseContainer) => {
   return (
     <section
-      className={`relative mx-auto w-full max-w-[76rem] px-4 md:px-12 ${className}`}
+      className={`relative mx-auto w-full max-w-[76rem] px-4 md:px-14 lg:px-20 ${className}`}
     >
       {children}
     </section>

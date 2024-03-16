@@ -97,7 +97,7 @@ export const ExperienceCard = ({
           {tasks && (
             <>
               <ul className="list-disc">
-                {tasks.split("-").map(
+                {tasks.split("- ").map(
                   (task, index) =>
                     task && (
                       <li
