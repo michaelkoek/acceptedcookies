@@ -20,10 +20,11 @@ export interface IPortfolioItems {
   portfolios: IPortfolioItem[];
 }
 
-export const getPortfolios = async () => {
+export const getPortfolios = async (lastId?: string) => {
+  const passedLastId = lastId ? `"${lastId}"` : null;
   const data: IPortfolioItems = await mainEndpoint.request(
     `query GetPortfolios {
-          portfolios {
+          portfolios(orderBy: startingDate_DESC first: 3 after: ${passedLastId}) {
             id
             slug
             title
@@ -40,6 +41,5 @@ export const getPortfolios = async () => {
           }
        }`,
   );
-
   return data;
 };

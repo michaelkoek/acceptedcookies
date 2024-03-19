@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -9,23 +9,48 @@ import type { IPortfolioItem } from "@/server/portfolio/getPortfolios";
 import { BaseContainer } from "@/components/base-container";
 import { LogoDisplayHeader } from "@/components/logo-display";
 import { MainMenu } from "@/components/menu";
-import { ExperienceCard } from "@/components/experience-card";
+import { ExperienceCard, SkeletonCard } from "@/components/experience-card";
 import { btnStyle } from "@/components/button";
 import { StackItem } from "@/components/stack-item";
 import { TeachChart } from "@/components/teach-chart";
 
 export default function About() {
   const [experienceItems, setExperienceItems] = useState<IPortfolioItem[]>([]);
+  const [hasMoreToFetch, setHasMoretoFetch] = useState(true);
 
   useEffect(() => {
     const fetchExperiences = async () => {
-      const product = await getPortfolios();
-      setExperienceItems(product.portfolios);
+      const { portfolios } = await getPortfolios();
+      setExperienceItems(portfolios);
     };
     fetchExperiences();
   }, []);
 
-  console.log({ experienceItems });
+  const fetchMoreItems = async () => {
+    const lastItemId = experienceItems[experienceItems.length - 1].id;
+    const { portfolios } = await getPortfolios(lastItemId);
+    setHasMoretoFetch(portfolios.length > 0);
+    setExperienceItems((prevState) => [...prevState, ...portfolios]);
+  };
+
+  const Availability = ({ available = true }: { available?: boolean }) => {
+    const isAvailable =
+      "bg-green-700 after:translate-x-full after:border-white peer-focus:outline-none rtl:after:-translate-x-full";
+    const notAvailable = "dark:border-red-900 dark:bg-red-800";
+
+    const composeAvailability = available ? isAvailable : notAvailable;
+
+    return (
+      <>
+        <div
+          className={`relative block h-7 w-[3.2rem] rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:shadow-lg after:transition-all after:content-['']   dark:peer-focus:ring-blue-800 ${composeAvailability}`}
+        ></div>
+        <span className="text-sm font-medium text-gray-900 dark:text-gray-300">
+          Available for work?
+        </span>
+      </>
+    );
+  };
 
   return (
     <>
@@ -106,6 +131,14 @@ export default function About() {
                   {expItem.description}
                 </ExperienceCard>
               ))}
+
+              {hasMoreToFetch && (
+                <section className="flex w-1/2 items-center">
+                  <button className={btnStyle} onClick={() => fetchMoreItems()}>
+                    See more
+                  </button>
+                </section>
+              )}
             </section>
             <section className="col-span-2 md:col-span-1">
               <motion.article
@@ -152,19 +185,8 @@ export default function About() {
                   </Link>
                 </div>
 
-                <div>
-                  <label className="flex cursor-pointer items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked
-                      value=""
-                      className="peer sr-only"
-                    />
-                    <div className="peer relative block h-7 w-[3.2rem] rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:shadow-lg after:transition-all after:content-[''] peer-checked:bg-green-700 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none rtl:peer-checked:after:-translate-x-full dark:border-red-900 dark:bg-red-800 dark:peer-focus:ring-blue-800"></div>
-                    <span className="text-sm font-medium text-gray-900 dark:text-gray-300">
-                      Available for work?
-                    </span>
-                  </label>
+                <div className="flex flex-col items-center gap-4 md:flex-row">
+                  <Availability />
                 </div>
               </motion.article>
             </section>
