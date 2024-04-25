@@ -2,25 +2,73 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import {
   CodeBracketSquareIcon,
   FingerPrintIcon,
   DocumentCheckIcon,
   PresentationChartBarIcon,
 } from "@heroicons/react/24/outline";
+import { motion } from "framer-motion";
 import { HomeInfoBlock } from "@/components/home-info-block";
 import { MainMenu } from "@/components/menu";
 import { LogoDisplayHeader } from "@/components/logo-display";
+import { useEffect, useMemo, useState } from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { menuItems, type IMenuItems } from "@/components/menu/menu-items";
 
 export default function Home() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [mainMenu, setMainMenu] = useState<IMenuItems[]>();
+  const currentPath = usePathname();
+
+  const MenuTriggerIcon = useMemo(
+    () => (isExpanded ? XMarkIcon : Bars3Icon),
+    [isExpanded],
+  );
+
+  useEffect(() => {
+    setMainMenu(menuItems);
+  }, []);
+
+  const toggleMenuState = () => {
+    setIsExpanded((prevState) => !prevState);
+  };
   return (
     <>
-      <header className="fixed top-0 p-4">
+      <header className="fixed top-0 z-20 flex w-full flex-wrap justify-between p-8">
         <LogoDisplayHeader />
+        <button
+          title="toggle menu"
+          aria-label="Menu"
+          className="flex items-center"
+          onClick={() => toggleMenuState()}
+        >
+          <motion.div
+            animate={{
+              rotate: isExpanded ? 360 : 0,
+            }}
+            initial={false}
+          >
+            <MenuTriggerIcon className="color-white h-6 w-6" />
+          </motion.div>
+          <span>Menu</span>
+        </button>
       </header>
-      <div className="absolute left-[50%] top-6 translate-x-[-50%]">
-        <MainMenu isOpen />
-      </div>
+
+      <MainMenu isOpen={isExpanded}>
+        {mainMenu?.map((menuItem) => (
+          <Link
+            key={menuItem.id}
+            href={menuItem.url}
+            title={menuItem.title}
+            className="px-4 text-[200%] capitalize text-slate-100 hover:text-slate-500"
+          >
+            {menuItem.label}
+          </Link>
+        ))}
+      </MainMenu>
+
       <main className="mt-[145px] h-lvh md:mt-auto">
         <section className="grid h-full md:grid-cols-3">
           <article className="col-span-1 flex flex-col justify-between md:col-span-2 ">
@@ -125,7 +173,7 @@ export default function Home() {
             </section>
           </article>
 
-          <article className="invisible w-full bg-stone-900 md:visible">
+          <article className="hidden w-full bg-stone-900 md:block">
             <Image
               loading="lazy"
               title="Made with pencil and markers"

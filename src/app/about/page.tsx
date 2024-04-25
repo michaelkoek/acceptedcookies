@@ -16,7 +16,7 @@ import { TeachChart } from "@/components/teach-chart";
 
 export default function About() {
   const [experienceItems, setExperienceItems] = useState<IPortfolioItem[]>([]);
-  const [hasMoreToFetch, setHasMoretoFetch] = useState(true);
+  const [hasMoreToFetch, setHasMoreToFetch] = useState(true);
 
   useEffect(() => {
     const fetchExperiences = async () => {
@@ -29,7 +29,7 @@ export default function About() {
   const fetchMoreItems = async () => {
     const lastItemId = experienceItems[experienceItems.length - 1].id;
     const { portfolios } = await getPortfolios(lastItemId);
-    setHasMoretoFetch(portfolios.length > 0);
+    setHasMoreToFetch(portfolios.length > 0);
     setExperienceItems((prevState) => [...prevState, ...portfolios]);
   };
 
@@ -54,11 +54,9 @@ export default function About() {
 
   return (
     <>
-      <header className="fixed top-0 z-50 flex w-full justify-between p-4">
+      <header className="fixed top-0 z-50 flex w-full justify-between p-8">
         <LogoDisplayHeader />
-        <div>
-          <MainMenu />
-        </div>
+        <MainMenu />
       </header>
       <main className="bg-gray-100">
         <section className="relative h-screen">
@@ -194,7 +192,7 @@ export default function About() {
         </BaseContainer>
 
         <section className="bg-white">
-          <BaseContainer className="py-40">
+          <BaseContainer className="py-10 md:py-40">
             <div className="grid-row-3 grid items-center gap-4 md:grid-cols-3">
               <div>
                 <h2 className="mb-4 text-4xl font-bold text-gray-800 drop-shadow-sm">

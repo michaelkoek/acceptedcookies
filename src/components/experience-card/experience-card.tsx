@@ -64,7 +64,7 @@ export const ExperienceCard = ({
 
   return (
     <motion.article
-      className="flex flex-col gap-4 rounded-md p-8 md:flex-row"
+      className="flex flex-col gap-4 rounded-md p-4 md:flex-row md:p-8"
       whileHover={{
         backgroundColor: "rgba(255,255,255)",
         scale: 1.02,
